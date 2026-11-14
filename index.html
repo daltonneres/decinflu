@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parcerô</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6faf7;--card:#fff;--ink:#14291f;--mute:#5c7266;--line:#dbe7df;--g:#1f7a4d;--gd:#155c39;--gl:#e4f3ea;--red:#b3402f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a14;--card:#16251c;--ink:#e8f2ec;--mute:#93aa9c;--line:#26382d;--g:#4cc58a;--gd:#7fdcae;--gl:#1d3a2a;--red:#ff8a78;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1a14;--card:#16251c;--ink:#e8f2ec;--mute:#93aa9c;--line:#26382d;--g:#4cc58a;--gd:#7fdcae;--gl:#1d3a2a;--red:#ff8a78;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Bricolage Grotesque",system-ui,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 90px}
+header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+h1{margin:0;font-size:28px;font-weight:800;color:var(--g);letter-spacing:-.02em}
+header span{color:var(--mute);font-size:14px}
+nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:18px;padding-bottom:4px}
+nav button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--g);border-color:var(--g);color:#fff;font-weight:600}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.sum div{background:var(--gl);border-radius:12px;padding:12px}
+.sum b{display:block;font-size:22px;color:var(--gd)}
+.sum small{color:var(--mute)}
+.add{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:16px}
+input,select{font:inherit;font-size:15px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);min-width:0;width:100%}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--g);outline-offset:1px}
+.btn{background:var(--g);color:#fff;border:0;border-radius:8px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer}
+.item{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.item .m{flex:1;min-width:0}
+.item .m small{display:block;color:var(--mute)}
+.x{background:none;border:0;color:var(--mute);font-size:18px;cursor:pointer;padding:4px 8px}
+.in{color:var(--g);font-weight:600}.out{color:var(--red);font-weight:600}
+.done .t{text-decoration:line-through;color:var(--mute)}
+.bar{height:8px;background:var(--gl);border-radius:99px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--g)}
+.tag{font-size:12px;padding:2px 9px;border-radius:99px;background:var(--gl);color:var(--gd)}
+.tag.f{background:var(--g);color:#fff}
+.empty{color:var(--mute);text-align:center;padding:24px 0}
+.cur{width:90px}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--g)}
+.sec{display:none}.sec.on{display:block}
+#login,#auth{position:fixed;inset:0;background:var(--bg);z-index:9;display:none;align-items:center;justify-content:center;padding:20px}
+#login.on,#auth.on{display:flex}#auth{z-index:10}
+.lb{max-width:380px;width:100%;text-align:center}
+.lb h1{font-size:40px}.lb p{color:var(--mute)}
+.pf{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:10px;font:inherit;color:var(--ink);cursor:pointer}
+.pf:hover{border-color:var(--g)}.pf b{font-size:20px;display:block}.pf small{color:var(--mute)}
+.hello h2{margin:0;font-size:26px;font-weight:800}.hello p{margin:2px 0 16px;color:var(--mute)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.box h3{margin:0 0 10px;font-size:16px}
+.cal{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:14px}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.ch b{font-size:18px;text-transform:capitalize}
+.g7{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.g7 span{font-size:12px;color:var(--mute)}
+.dy{aspect-ratio:1;border:1px solid transparent;background:none;border-radius:10px;font:inherit;color:var(--ink);cursor:pointer;position:relative;padding:0}
+.dy.has::after{content:"";position:absolute;bottom:5px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--g)}
+.dy.td{border-color:var(--g)}.dy.sel{background:var(--g);color:#fff}.dy.sel::after{background:#fff}
+.sm{font-size:13px;padding:6px 10px}
+.btn.ghost{background:var(--gl);color:var(--gd)}
+.fl{display:flex;gap:6px;margin-bottom:12px}
+.note{color:var(--mute);font-size:13px}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;align-items:start}
+.col{background:var(--gl);border-radius:14px;padding:10px}.col h3{margin:0 0 8px;font-size:15px}
+.col .item{display:block;margin-bottom:8px}
+#sync{font-size:12px;color:var(--mute);margin-right:8px}
+</style>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+<div id="auth"><div class="lb"><h1>Parcerô</h1><p>Entre com seu usuário e senha.</p><div class="add" style="grid-template-columns:1fr"><input id="au" placeholder="Usuário (ex.: dalton)" autocomplete="username" autocapitalize="none"><input id="ap" type="password" placeholder="Senha" autocomplete="current-password" onkeydown="if(event.key==='Enter')gLogin()"><button class="btn" onclick="gLogin()">Entrar</button></div><p class="note" id="aerr" role="alert"></p></div></div>
+<div id="login"><div class="lb"><h1>Parcerô</h1><p>Quem está entrando?</p>
+<button class="pf" onclick="enter('Dalton')"><b>Dalton</b><small>Videomaker e desenvolvedor</small></button>
+<button class="pf" onclick="enter('Karine')"><b>Karine</b><small>Influenciadora digital</small></button></div></div>
+<div class="wrap">
+<header><h1>Parcerô</h1><span><span id="sync"></span><button class="btn ghost sm" onclick="logout()">Trocar usuário</button></span></header>
+<nav id="nav"></nav>
+
+<section class="sec" id="inicio"><div class="hello" id="hello"></div><div class="sum" id="sum"></div><div class="cols" id="home"></div></section>
+
+<section class="sec" id="agenda">
+<div class="cal"><div class="ch"><button class="btn ghost sm" onclick="mv(-1)" aria-label="Mês anterior">‹</button><b id="mt"></b><button class="btn ghost sm" onclick="mv(1)" aria-label="Próximo mês">›</button></div><div class="g7" id="cal"></div></div>
+<div class="add"><input type="date" id="a_d"><input type="time" id="a_h"><input id="a_c" placeholder="Cliente"><input id="a_t" placeholder="Evento"><select id="a_w"><option>Dalton</option><option>Karine</option><option>Ambos</option></select><button class="btn" onclick="addEv()">Adicionar</button></div>
+<h3 id="agt"></h3><div id="l_agenda"></div></section>
+
+<section class="sec" id="conteudo">
+<div class="add"><input id="t_t" placeholder="Ex.: Produzir vídeo da parceria X"><select id="t_k"><option>Vídeo</option><option>Post</option><option>Story</option><option>Carrossel</option></select><select id="t_o" aria-label="Origem"><option>Pessoal</option></select><select id="t_w"><option>Dalton</option><option>Karine</option></select><input type="date" id="t_d" aria-label="Data de publicação"><select id="t_r" aria-label="Recorrência"><option value="">Não repete</option><option value="semanal">Toda semana</option><option value="quinzenal">A cada 15 dias</option><option value="mensal">Todo mês</option></select><button class="btn" onclick="addTicket()">Abrir ticket</button></div>
+<p class="note">Origem: Pessoal ou uma parceria cadastrada. Com recorrência, ao publicar o ticket nasce o próximo, já com a nova data.</p><div class="board" id="board"></div></section>
+
+<section class="sec" id="caixa">
+<div class="add"><select id="c_k"><option value="in">Entrada</option><option value="out">Saída</option></select><input id="c_t" placeholder="Descrição ou parceiro"><input type="number" step="0.01" id="c_v" placeholder="Valor (R$)"><input type="date" id="c_d"><button class="btn" onclick="addTx()">Adicionar</button></div>
+<div id="l_caixa"></div></section>
+
+<section class="sec" id="checklist">
+<div class="add"><select id="k_k"><option value="fazer">Fazer</option><option value="comprar">Comprar</option></select><input id="k_t" placeholder="Ex.: gravar vídeo / comprar tripé"><select id="k_w"><option>Dalton</option><option>Karine</option><option>Ambos</option></select><button class="btn" onclick="addTk()">Adicionar</button></div>
+<div class="fl" id="fl"></div><div id="l_checklist"></div></section>
+
+<section class="sec" id="metas">
+<div class="add"><input id="m_t" placeholder="Meta (ex.: Parcerias no mês)"><input type="number" id="m_a" placeholder="Alvo"><button class="btn" onclick="addGoal()">Adicionar</button></div>
+<div id="l_metas"></div></section>
+
+<section class="sec" id="parcerias">
+<div class="add"><input id="p_n" placeholder="Parceiro"><select id="p_s"><option>Em conversa</option><option>Proposta enviada</option><option>Fechada</option></select><input type="number" step="0.01" id="p_v" placeholder="Valor (R$)"><input id="p_o" placeholder="Como anda (observação)"><button class="btn" onclick="addDeal()">Adicionar</button></div>
+<div id="l_parcerias"></div></section>
+</div>
+<script>
+var tabs=[["inicio","Início"],["agenda","Agenda"],["conteudo","Conteúdo"],["caixa","Entradas e saídas"],["checklist","Checklist"],["metas","Metas"],["parcerias","Parcerias"]];
+var P={Dalton:"Videomaker e desenvolvedor",Karine:"Influenciadora digital"};
+var S={ev:[],tx:[],tk:[],goals:[],deals:[],tickets:[]},U=null,ckf="tudo";
+try{var raw=localStorage.getItem("parcero");if(raw)S=JSON.parse(raw);U=localStorage.getItem("parcero_user")}catch(e){}
+S.tickets=S.tickets||[];var DB=null,last={},ST=["Pendente","Em desenvolvimento","Teste","Publicado"];
+function save(){try{localStorage.setItem("parcero",JSON.stringify(S))}catch(e){}
+ if(DB)Object.keys(S).forEach(function(k){var j=JSON.stringify(S[k]);if(j!==last[k]){last[k]=j;DB.doc("app/"+k).set({items:S[k]}).catch(function(){})}});render()}
+function sub(k){DB.doc("app/"+k).onSnapshot(function(sn){if(sn.exists){var it=(sn.data()||{}).items||[];last[k]=JSON.stringify(it);S[k]=it;try{localStorage.setItem("parcero",JSON.stringify(S))}catch(e){}render()}},function(){})}
+function addTicket(){if(!val("t_t"))return;S.tickets.push({t:val("t_t"),k:$("t_k").value,w:$("t_w").value,o:$("t_o").value,r:$("t_r").value,d:val("t_d"),by:U||"",s:0});clear(["t_t","t_d"]);save()}
+function nextD(d,r){var x=d?new Date(d+"T12:00:00"):new Date();if(r=="semanal")x.setDate(x.getDate()+7);else if(r=="quinzenal")x.setDate(x.getDate()+14);else x.setMonth(x.getMonth()+1);return iso(x)}
+function mvT(i,n){var t=S.tickets[i],s=t.s+n;if(s<0||s>3)return;t.s=s;if(s==3&&t.r&&!t.g){t.g=1;S.tickets.push({t:t.t,k:t.k,w:t.w,o:t.o,r:t.r,d:nextD(t.d,t.r),by:t.by,s:0})}save()}
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function brl(n){return Number(n).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+function dt(d){return d?d.split("-").reverse().join("/"):""}
+function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+var TODAY=iso(new Date()),now=new Date(),cy=now.getFullYear(),cm=now.getMonth(),sel=TODAY;
+function val(i){return $(i).value.trim()}
+function clear(ids){ids.forEach(function(i){$(i).value=""})}
+function del(k,i){S[k].splice(i,1);save()}
+function enter(n){U=n;try{localStorage.setItem("parcero_user",n)}catch(e){}$("login").classList.remove("on");render()}
+function logout(){try{if(DB)firebase.auth().signOut()}catch(e){}U=null;try{localStorage.removeItem("parcero_user")}catch(e){}$("login").classList.add("on")}
+function addEv(){if(!val("a_d")||!val("a_t"))return;S.ev.push({d:val("a_d"),h:val("a_h"),c:val("a_c"),t:val("a_t"),w:$("a_w").value});sel=val("a_d");clear(["a_t","a_c","a_h"]);save()}
+function addTx(){if(!(parseFloat(val("c_v"))>0))return;S.tx.push({k:$("c_k").value,t:val("c_t"),v:parseFloat(val("c_v")),d:val("c_d")});clear(["c_t","c_v"]);save()}
+function addTk(){if(!val("k_t"))return;S.tk.push({t:val("k_t"),w:$("k_w").value,k:$("k_k").value,ok:false});clear(["k_t"]);save()}
+function addGoal(){if(!val("m_t")||!(parseFloat(val("m_a"))>0))return;S.goals.push({t:val("m_t"),a:parseFloat(val("m_a")),n:0});clear(["m_t","m_a"]);save()}
+function addDeal(){if(!val("p_n"))return;S.deals.push({n:val("p_n"),s:$("p_s").value,v:parseFloat(val("p_v"))||0,o:val("p_o")});clear(["p_n","p_v","p_o"]);save()}
+function xb(k,i){return '<button class="x" aria-label="Remover" onclick="del(\''+k+'\','+i+')">×</button>'}
+function list(arr,fn,msg){return arr.length?arr.map(fn).join(""):'<div class="empty">'+(msg||"Nada por aqui ainda. Adicione o primeiro item acima.")+'</div>'}
+function mv(n){cm+=n;if(cm<0){cm=11;cy--}if(cm>11){cm=0;cy++}render()}
+function pick(d){sel=d;$("a_d").value=d;render()}
+function evRow(e){return '<div class="item"><div class="m"><b>'+esc(e.t)+'</b><small>'+dt(e.d)+(e.h?" às "+e.h:"")+(e.c?" · "+esc(e.c):"")+'</small></div><span class="tag">'+e.w+'</span>'+xb("ev",e.i)+'</div>'}
+function tkRow(t){return '<div class="item'+(t.ok?" done":"")+'"><input type="checkbox" aria-label="Concluir" '+(t.ok?"checked":"")+' onchange="S.tk['+t.i+'].ok=this.checked;save()"><div class="m t">'+esc(t.t)+'<small>'+(t.k=="comprar"?"Comprar":"Fazer")+'</small></div><span class="tag">'+t.w+'</span>'+xb("tk",t.i)+'</div>'}
+function goalBar(g){var p=Math.min(100,Math.round(g.n/g.a*100));return '<div style="margin-bottom:10px"><b>'+esc(g.t)+'</b> <span class="note">'+g.n+' de '+g.a+'</span><div class="bar"><i style="width:'+p+'%"></i></div></div>'}
+function render(){
+ if(!U){$("login").classList.add("on")}
+ var tin=0,tout=0;S.tx.forEach(function(x){x.k=="in"?tin+=x.v:tout+=x.v});
+ var fech=S.deals.filter(function(d){return d.s=="Fechada"}).length;
+ var ev=S.ev.map(function(e,i){return Object.assign({},e,{i:i})}).sort(function(a,b){return(a.d+a.h).localeCompare(b.d+b.h)});
+ var tk=S.tk.map(function(t,i){return Object.assign({},t,{i:i})});
+ var h=new Date().getHours(),sd=h<12?"Bom dia":h<18?"Boa tarde":"Boa noite";
+ if(U){$("hello").innerHTML='<h2>'+sd+', '+U+'</h2><p>'+P[U]+'</p>'}
+ $("sum").innerHTML='<div><b>'+fech+'</b><small>parcerias fechadas</small></div><div><b>'+brl(tin-tout)+'</b><small>saldo</small></div><div><b>'+tk.filter(function(t){return!t.ok&&t.k!="comprar"}).length+'</b><small>a fazer</small></div>';
+ var prox=ev.filter(function(e){return e.d>=TODAY}).slice(0,4);
+ var mine=tk.filter(function(t){return!t.ok&&t.k!="comprar"&&(t.w==U||t.w=="Ambos")}).slice(0,4);
+ var buy=tk.filter(function(t){return!t.ok&&t.k=="comprar"});
+ var pend=S.deals.filter(function(d){return d.s!="Fechada"});
+ $("home").innerHTML='<div class="box"><h3>Próximos eventos</h3>'+list(prox,function(e){return '<div style="margin-bottom:8px"><b>'+esc(e.t)+'</b><div class="note">'+dt(e.d)+(e.h?" às "+e.h:"")+(e.c?" · "+esc(e.c):"")+' · '+e.w+'</div></div>'},"Sem eventos marcados.")+'</div>'
+ +'<div class="box"><h3>Para você fazer</h3>'+list(mine,function(t){return '<div style="margin-bottom:6px">'+esc(t.t)+'</div>'},"Tudo em dia.")+'</div>'
+ +'<div class="box"><h3>Lista de compras ('+buy.length+')</h3>'+list(buy.slice(0,5),function(t){return '<div style="margin-bottom:6px">'+esc(t.t)+'</div>'},"Nada para comprar.")+'</div>'
+ +'<div class="box"><h3>Metas</h3>'+list(S.goals.slice(0,3),goalBar,"Cadastre uma meta na aba Metas.")+'</div>'
+ +'<div class="box"><h3>Parcerias em andamento ('+pend.length+')</h3>'+list(pend.slice(0,4),function(d){return '<div style="margin-bottom:8px"><b>'+esc(d.n)+'</b> <span class="tag">'+d.s+'</span>'+(d.o?'<div class="note">'+esc(d.o)+'</div>':"")+'</div>'},"Nenhuma parceria em andamento.")+'</div>';
+
+ $("sync").textContent=DB?"Compartilhado":"Só neste aparelho";
+ var co=$("t_o").value;$("t_o").innerHTML='<option>Pessoal</option>'+S.deals.map(function(d){return '<option>'+esc(d.n)+'</option>'}).join("");if(co)$("t_o").value=co;
+ var tkt=S.tickets.map(function(t,i){return Object.assign({},t,{i:i})});
+ var opent=tkt.filter(function(t){return t.s<3});
+ $("home").innerHTML+='<div class="box"><h3>Conteúdo em andamento ('+opent.length+')</h3>'+list(opent.slice(0,4),function(t){return '<div style="margin-bottom:8px"><b>'+esc(t.t)+'</b> <span class="tag">'+ST[t.s]+'</span><div class="note">'+t.w+(t.d?" · publica em "+dt(t.d):"")+'</div></div>'},"Nenhum ticket aberto.")+'</div>';
+ $("board").innerHTML=ST.map(function(nm,si){var cs=tkt.filter(function(t){return t.s==si});return '<div class="col"><h3>'+nm+' <span class="note">'+cs.length+'</span></h3>'+(cs.length?cs.map(function(t){return '<div class="item"><b>'+esc(t.t)+'</b><div class="note">'+esc(t.k)+' · '+t.w+(t.o?" · "+(t.o=="Pessoal"?"Pessoal":"Parceria: "+esc(t.o)):"")+(t.by?" · aberto por "+t.by:"")+'</div>'+(t.r?'<div class="note">Repete '+{semanal:"toda semana",quinzenal:"a cada 15 dias",mensal:"todo mês"}[t.r]+'</div>':"")+(t.d?'<div class="note">Publica em '+dt(t.d)+'</div>':"")+'<div style="display:flex;gap:6px;margin-top:8px;align-items:center">'+(si>0?'<button class="btn ghost sm" aria-label="Voltar etapa" onclick="mvT('+t.i+',-1)">‹</button>':"")+(si<3?'<button class="btn ghost sm" aria-label="Avançar etapa" onclick="mvT('+t.i+',1)">›</button>':"")+'<span style="flex:1"></span>'+xb("tickets",t.i)+'</div></div>'}).join(""):'<div class="note">Vazio</div>')+'</div>'}).join("");
+ // calendário
+ var mn=new Date(cy,cm,1).toLocaleDateString("pt-BR",{month:"long",year:"numeric"});$("mt").textContent=mn;
+ var c="Dom,Seg,Ter,Qua,Qui,Sex,Sáb".split(",").map(function(d){return "<span>"+d+"</span>"}).join("");
+ var first=new Date(cy,cm,1).getDay(),dim=new Date(cy,cm+1,0).getDate();
+ for(var i=0;i<first;i++)c+="<i></i>";
+ for(var d=1;d<=dim;d++){var k=cy+"-"+String(cm+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+  var has=ev.some(function(e){return e.d==k});
+  c+='<button class="dy'+(has?" has":"")+(k==TODAY?" td":"")+(k==sel?" sel":"")+'" onclick="pick(\''+k+'\')">'+d+'</button>'}
+ $("cal").innerHTML=c;
+ $("agt").textContent="Eventos de "+dt(sel);
+ $("l_agenda").innerHTML=list(ev.filter(function(e){return e.d==sel}),evRow,"Nenhum evento neste dia.");
+ $("l_caixa").innerHTML='<div class="sum"><div><b class="in">'+brl(tin)+'</b><small>entradas</small></div><div><b class="out">'+brl(tout)+'</b><small>saídas</small></div><div><b>'+brl(tin-tout)+'</b><small>saldo</small></div></div>'+list(S.tx,function(x,i){return '<div class="item"><div class="m"><b>'+esc(x.t||(x.k=="in"?"Entrada":"Saída"))+'</b><small>'+dt(x.d)+'</small></div><span class="'+x.k+'">'+(x.k=="in"?"+ ":"− ")+brl(x.v)+'</span>'+xb("tx",i)+'</div>'});
+ $("fl").innerHTML=[["tudo","Tudo"],["fazer","Fazer"],["comprar","Comprar"]].map(function(f){return '<button class="btn sm'+(f[0]==ckf?"":" ghost")+'" onclick="ckf=\''+f[0]+'\';render()">'+f[1]+'</button>'}).join("");
+ $("l_checklist").innerHTML=list(tk.filter(function(t){return ckf=="tudo"||(t.k||"fazer")==ckf}),tkRow);
+ $("l_metas").innerHTML=list(S.goals,function(g,i){var p=Math.min(100,Math.round(g.n/g.a*100));return '<div class="item"><div class="m"><b>'+esc(g.t)+'</b><small>'+g.n+' de '+g.a+' ('+p+'%)</small><div class="bar"><i style="width:'+p+'%"></i></div></div><input class="cur" type="number" aria-label="Progresso atual" value="'+g.n+'" onchange="S.goals['+i+'].n=parseFloat(this.value)||0;save()">'+xb("goals",i)+'</div>'});
+ $("l_parcerias").innerHTML=list(S.deals,function(d,i){return '<div class="item"><div class="m"><b>'+esc(d.n)+'</b><small>'+(d.v?brl(d.v)+" · ":"")+(d.o?esc(d.o):"Sem observação")+'</small></div><select style="width:auto" aria-label="Status" onchange="S.deals['+i+'].s=this.value;save()">'+["Em conversa","Proposta enviada","Fechada"].map(function(s){return '<option'+(s==d.s?" selected":"")+'>'+s+'</option>'}).join("")+'</select>'+xb("deals",i)+'</div>'});
+}
+function show(){var h=(location.hash||"#inicio").slice(1);if(!tabs.some(function(t){return t[0]==h}))h="inicio";
+ tabs.forEach(function(t){$(t[0]).classList.toggle("on",t[0]==h)});
+ $("nav").innerHTML=tabs.map(function(t){return '<button class="'+(t[0]==h?"on":"")+'" onclick="location.hash=\''+t[0]+'\'">'+t[1]+'</button>'}).join("")}
+window.addEventListener("hashchange",show);
+$("a_d").value=$("c_d").value=TODAY;
+location.hash="#inicio";show();render();
+var firebaseConfig={apiKey:"AIzaSyBUc4URg8SKKcRgx2wYl4OsHbF53uKwlTs",authDomain:"decinflu.firebaseapp.com",projectId:"decinflu",storageBucket:"decinflu.firebasestorage.app",messagingSenderId:"334276866671",appId:"1:334276866671:web:310b28edff1a6b76af139a"};
+function gLogin(){var u=$("au").value.trim().toLowerCase().replace(/[^a-z0-9._-]/g,""),p=$("ap").value;if(!u||!p){$("aerr").textContent="Preencha usuário e senha.";return}
+firebase.auth().signInWithEmailAndPassword(u+"@parcero.app",p).catch(function(e){$("aerr").textContent=["auth/invalid-credential","auth/wrong-password","auth/user-not-found","auth/invalid-email"].indexOf(e.code)>-1?"Usuário ou senha incorretos.":"Não foi possível entrar ("+e.code+")."})}
+try{if(firebaseConfig.apiKey.indexOf("COLE")!==0){firebase.initializeApp(firebaseConfig);firebase.auth().onAuthStateChanged(function(u){if(!u){DB=null;$("auth").classList.add("on");return}$("auth").classList.remove("on");var nm=(u.email||"").split("@")[0],pn=nm.charAt(0).toUpperCase()+nm.slice(1);if(P[pn])enter(pn);DB=firebase.firestore();Object.keys(S).forEach(sub);render()})}}catch(e){}
+</script>
+</body>
+</html>
